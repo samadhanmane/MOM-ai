@@ -313,7 +313,6 @@ h1, h2, h3, h4, h5, h6 {
     border: 1.5px dashed #cbd5e1 !important;
     border-radius: 14px !important;
 
-    /* Soft neutral background */
     background: #f8fafc !important;
 
     padding: 1.6rem !important;
@@ -325,7 +324,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* Hover */
+/* ─────────────────────────────────────────
+   DROPZONE HOVER
+───────────────────────────────────────── */
 
 [data-testid="stFileUploaderDropzone"]:hover {
     border-color: #f97316 !important;
@@ -336,18 +337,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* Upload button */
+/* ─────────────────────────────────────────
+   UPLOAD BUTTON — ONLY CHANGE THIS
+───────────────────────────────────────── */
 
 [data-testid="stFileUploaderDropzone"] button {
     background: #ffffff !important;
 
-    color: #475569 !important;
+    color: #334155 !important;
 
-    border: 1px solid #dbe3ee !important;
-    border-radius: 8px !important;
+    border: 1px solid #cbd5e1 !important;
+
+    border-radius: 9px !important;
 
     font-weight: 600 !important;
-    font-size: 0.78rem !important;
+
+    font-size: 0.8rem !important;
+
+    padding: 0.55rem 1rem !important;
 
     box-shadow: none !important;
 
@@ -358,11 +365,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* Upload button hover */
-/* =========================================================
-   AURA — LIGHT INPUT AREA
-   ========================================================= */
+/* ─────────────────────────────────────────
+   UPLOAD BUTTON HOVER
+───────────────────────────────────────── */
 
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background: #fff7ed !important;
+
+    color: #ea580c !important;
+
+    border-color: #f97316 !important;
+
+    box-shadow: none !important;
+}
 
 /* ─────────────────────────────────────
    HEADER
