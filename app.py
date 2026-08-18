@@ -305,18 +305,18 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
 }
 
-/* ── File Uploader styling (FIXED) ── */
+/* ── File Uploader styling ── */
 [data-testid="stFileUploaderDropzone"] {
     border: 2px dashed #cbd5e1 !important;
     border-radius: 14px !important;
-    background: #eef2f6 !important;
-    padding: 1.8rem 1.5rem !important;
+    background: #e2e8f0 !important;
+    padding: 1.8rem !important;
     transition: all 0.2s ease !important;
 }
 
 [data-testid="stFileUploaderDropzone"]:hover {
     border-color: var(--accent) !important;
-    background: #e2e8f0 !important;
+    background: #cbd5e1 !important;
 }
 
 [data-testid="stFileUploaderDropzone"] button {
@@ -335,10 +335,6 @@ h1, h2, h3, h4, h5, h6 {
 [data-testid="stFileUploaderDropzone"] p {
     color: var(--text-soft) !important;
     font-weight: 500 !important;
-}
-
-[data-testid="stFileUploaderDropzone"] small {
-    color: var(--text-muted) !important;
 }
 
 /* ── Pipeline Steps ── */
@@ -650,7 +646,7 @@ if st.session_state.result is None:
         )
 
     with col_url:
-        st.markdown('<div style="font-size:0.75rem;color:#64748b;font-weight:600;margin-bottom:4px;">YouTube URL</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-size:0.75rem;color:var(--text-muted);font-weight:600;margin-bottom:4px;">YouTube URL</div>', unsafe_allow_html=True)
         source_url = st.text_input(
             "YouTube URL",
             placeholder="https://www.youtube.com/watch?v=...",
