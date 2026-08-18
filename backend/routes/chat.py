@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel
 from backend.services.session_service import session_service
-from core.rag_engine import ask_question
 
 router = APIRouter(prefix="/api", tags=["Chat"])
 
@@ -14,6 +13,7 @@ def chat_with_meeting(payload: ChatRequest):
     """
     RAG Chat endpoint to ask questions about a processed meeting transcript.
     """
+    from core.rag_engine import ask_question
     if not payload.analysis_id or not payload.analysis_id.strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
