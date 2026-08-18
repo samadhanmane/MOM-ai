@@ -49,8 +49,13 @@ html, body, [class*="css"] {
 }
 
 header[data-testid="stHeader"] {
-    background: var(--bg) !important;
-    border-bottom: 1px solid var(--border) !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    pointer-events: none !important;
+}
+
+header[data-testid="stHeader"] * {
+    pointer-events: auto !important;
 }
 
 [data-testid="stToolbar"] {
@@ -498,25 +503,34 @@ h1, h2, h3, h4, h5, h6 {
 ───────────────────────────────────────── */
 [data-testid="stSidebarCollapsedControl"],
 [data-testid="collapsedControl"],
-[data-testid="stSidebarCollapseButton"] {
+div[data-testid="stSidebarCollapseButton"] {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
-    z-index: 999999 !important;
+    position: fixed !important;
+    top: 14px !important;
+    left: 14px !important;
+    z-index: 9999999 !important;
 }
 
 [data-testid="stSidebarCollapsedControl"] button,
 [data-testid="collapsedControl"] button,
-[data-testid="stSidebarCollapseButton"] button,
+button[data-testid="stSidebarCollapseButton"],
+button[aria-label*="sidebar" i],
+button[aria-label*="Sidebar" i],
 header button[kind="header"] {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 8px !important;
-    color: #1e293b !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-    width: 38px !important;
-    height: 38px !important;
     display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #ffffff !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
@@ -525,21 +539,28 @@ header button[kind="header"] {
 
 [data-testid="stSidebarCollapsedControl"] button:hover,
 [data-testid="collapsedControl"] button:hover,
-[data-testid="stSidebarCollapseButton"] button:hover,
+button[data-testid="stSidebarCollapseButton"]:hover,
+button[aria-label*="sidebar" i]:hover,
+button[aria-label*="Sidebar" i]:hover,
 header button[kind="header"]:hover {
     background: #fff7ed !important;
     border-color: #f97316 !important;
     color: #ea580c !important;
+    transform: scale(1.05) !important;
 }
 
 [data-testid="stSidebarCollapsedControl"] svg,
 [data-testid="collapsedControl"] svg,
-[data-testid="stSidebarCollapseButton"] svg,
+button[data-testid="stSidebarCollapseButton"] svg,
+button[aria-label*="sidebar" i] svg,
 header button[kind="header"] svg {
-    fill: #334155 !important;
-    stroke: #334155 !important;
-    color: #334155 !important;
+    fill: #1e293b !important;
+    stroke: #1e293b !important;
+    color: #1e293b !important;
+    width: 22px !important;
+    height: 22px !important;
 }
+
 
 
 /* ── Pipeline Steps ── */
