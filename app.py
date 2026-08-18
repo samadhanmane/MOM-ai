@@ -321,7 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 
 [data-testid="stFileUploaderDropzone"] button {
     background: #cbd5e1 !important;
-    color: #0f172a !important;
+    color: #000000 !important;
     border: 1px solid #94a3b8 !important;
     font-weight: 600 !important;
     box-shadow: none !important;
@@ -333,8 +333,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 [data-testid="stFileUploaderDropzone"] p {
-    color: var(--text-soft) !important;
+    color: #000000 !important;
     font-weight: 500 !important;
+}
+
+[data-testid="stFileUploaderDropzone"] small {
+    color: #000000 !important;
+    font-weight: 500 !important;
+}
+
+[data-testid="stFileUploaderDropzone"] div[data-testid="stMarkdownContainer"] {
+    color: #000000 !important;
 }
 
 /* ── Pipeline Steps ── */
@@ -642,6 +651,7 @@ if st.session_state.result is None:
         uploaded_file = st.file_uploader(
             "Upload media",
             type=["mp4", "mov", "webm", "mp3", "wav", "m4a", "ogg", "flac"],
+            label_visibility="collapsed",
             help="Drag and drop or click to browse"
         )
         st.markdown('<div style="font-size:0.75rem;color:#000000;margin-top:6px;">200MB per file • MP4, MOV, WEBM, MP3, WAV, M4A, OGG, FLAC</div>', unsafe_allow_html=True)
@@ -651,6 +661,7 @@ if st.session_state.result is None:
         source_url = st.text_input(
             "YouTube URL",
             placeholder="https://www.youtube.com/watch?v=...",
+            label_visibility="collapsed"
         )
         st.markdown('<div style="font-size:0.7rem;color:#000000;margin-top:4px;">Paste any YouTube video link</div>', unsafe_allow_html=True)
 
