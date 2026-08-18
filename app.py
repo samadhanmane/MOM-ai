@@ -314,10 +314,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.2s ease !important;
 }
 
-[data-testid="stFileUploaderDropzone"]:hover {
-    border-color: var(--accent) !important;
-    background: #cbd5e1 !important;
-}
+
 
 [data-testid="stFileUploaderDropzone"] button {
     background: #cbd5e1 !important;
@@ -327,10 +324,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: none !important;
 }
 
-[data-testid="stFileUploaderDropzone"] button:hover {
-    background: #94a3b8 !important;
-    color: #ffffff !important;
-}
+
 
 [data-testid="stFileUploaderDropzone"] p {
     color: #000000 !important;
