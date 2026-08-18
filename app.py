@@ -414,43 +414,108 @@ h1, h2, h3, h4, h5, h6 {
 /* ─────────────────────────────────────
    FILE UPLOADER
 ───────────────────────────────────── */
+/* ─────────────────────────────────────────
+   FILE UPLOADER
+───────────────────────────────────────── */
 
 [data-testid="stFileUploaderDropzone"] {
-
-    min-height: 132px !important;
-
-    border: 2px dashed #c4d2e3 !important;
-
+    border: 2px dashed #cbd5e1 !important;
     border-radius: 14px !important;
-
     background: #f8fafc !important;
-
     padding: 1.5rem !important;
-
+    min-height: 120px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-
     overflow: hidden !important;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease !important;
+    transition: border-color 0.2s ease, background 0.2s ease !important;
 }
 
-/* Hide the "Limit 200MB per file" small text that overflows */
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: #f97316 !important;
+    background: #fffaf5 !important;
+}
+
+/* Fix for button text overflow */
+[data-testid="stFileUploaderDropzone"] button {
+    background: #ffffff !important;
+    color: #334155 !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 9px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    padding: 0.55rem 1.2rem !important;
+    box-shadow: none !important;
+    white-space: nowrap !important;
+    min-width: auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease !important;
+}
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background: #fff7ed !important;
+    border-color: #f97316 !important;
+    color: #ea580c !important;
+    box-shadow: none !important;
+}
+
+/* Center the upload content */
+[data-testid="stFileUploaderDropzone"] > div,
+[data-testid="stFileUploaderDropzone"] > div > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+/* Hide the small text that overflows */
 [data-testid="stFileUploader"] > div > small {
     display: none !important;
 }
 
+/* Fix text wrapping */
+[data-testid="stFileUploaderDropzone"] p {
+    color: #64748b !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
 
-/* Hover */
+[data-testid="stFileUploaderDropzone"] small {
+    color: #94a3b8 !important;
+    font-size: 0.7rem !important;
+}
 
-[data-testid="stFileUploaderDropzone"]:hover {
+/* ─────────────────────────────────────
+   FILE UPLOADER CONTENT — center everything inside
+───────────────────────────────────── */
 
-    border-color: #f97316 !important;
+[data-testid="stFileUploaderDropzone"] > div,
+[data-testid="stFileUploaderDropzone"] > div > div,
+[data-testid="stFileUploaderDropzone"] > section,
+[data-testid="stFileUploaderDropzone"] > section > div,
+[data-testid="stFileUploaderDropzone"] section[data-testid="stFileUploaderDropzoneInput"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    text-align: center !important;
+}
 
-    background: #fffaf5 !important;
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] label {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
 }
 
 
