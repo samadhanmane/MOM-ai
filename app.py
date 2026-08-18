@@ -959,56 +959,11 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ─── Upload Section ─────────────────────────────────────────────────────────────
 if st.session_state.result is None:
 
-    # ─────────────────────────────────────────
-    # START ANALYSIS
-    # ─────────────────────────────────────────
-
-    st.markdown("""
-    <div class="analysis-header">
-
-        <div class="analysis-title">
-            📤 Start a new analysis
-        </div>
-
-        <div class="analysis-description">
-            Paste a YouTube URL or drop a media file below.
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-
-    # ─────────────────────────────────────────
-    # INPUTS
-    # ─────────────────────────────────────────
-
-    col_upload, col_url = st.columns(
-        [3, 2],
-        gap="medium"
-    )
-
-
-    # ─────────────── FILE UPLOAD ───────────────
-if st.session_state.result is None:
-
     # ─────────────────────────────────────
     # HEADER
     # ─────────────────────────────────────
 
-    st.markdown("""
-    <div class="analysis-header">
-
-        <div class="analysis-title">
-            📤 <span>Start a new analysis</span>
-        </div>
-
-        <div class="analysis-description">
-            Paste a YouTube URL or drop a media file below.
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
+    st.markdown('<div class="analysis-header"><div class="analysis-title">📤 Start a new analysis</div><div class="analysis-description">Paste a YouTube URL or drop a media file below.</div></div>', unsafe_allow_html=True)
 
     # ─────────────────────────────────────
     # INPUT ROW
@@ -1019,37 +974,22 @@ if st.session_state.result is None:
         gap="large"
     )
 
-
     # ───────────── FILE UPLOAD ─────────────
 
     with col_upload:
 
         uploaded_file = st.file_uploader(
             "Upload media",
-            type=[
-                "mp4",
-                "mov",
-                "webm",
-                "mp3",
-                "wav",
-                "m4a",
-                "ogg",
-                "flac"
-            ],
+            type=["mp4", "mov", "webm", "mp3", "wav", "m4a", "ogg", "flac"],
             label_visibility="collapsed",
             help="Drag and drop or click to browse"
         )
-
 
     # ───────────── YOUTUBE URL ─────────────
 
     with col_url:
 
-        st.markdown("""
-        <div class="youtube-label">
-            YouTube URL
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown('<div class="youtube-label">YouTube URL</div>', unsafe_allow_html=True)
 
         source_url = st.text_input(
             "YouTube URL",
@@ -1057,15 +997,11 @@ if st.session_state.result is None:
             label_visibility="collapsed"
         )
 
-
     # ─────────────────────────────────────
     # ANALYZE BUTTON
     # ─────────────────────────────────────
 
-    st.markdown(
-        "<div class='analyze-spacing'></div>",
-        unsafe_allow_html=True
-    )
+    st.markdown("<div class='analyze-spacing'></div>", unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1, 1, 1])
 
@@ -1081,6 +1017,7 @@ if st.session_state.result is None:
             use_container_width=True,
             disabled=button_disabled
         )
+
 
     # ─── Show processing status ───────────────────────────────────────────────
     if st.session_state.processing:
