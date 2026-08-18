@@ -307,16 +307,29 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── File Uploader styling ── */
 [data-testid="stFileUploaderDropzone"] {
-    border: 2px dashed #c5d0e0 !important;
+    border: 2px dashed #cbd5e1 !important;
     border-radius: 14px !important;
-    background: var(--surface-soft) !important;
-    padding: 2rem !important;
+    background: #e2e8f0 !important;
+    padding: 1.8rem !important;
     transition: all 0.2s ease !important;
 }
 
 [data-testid="stFileUploaderDropzone"]:hover {
     border-color: var(--accent) !important;
-    background: #f5f9ff !important;
+    background: #cbd5e1 !important;
+}
+
+[data-testid="stFileUploaderDropzone"] button {
+    background: #cbd5e1 !important;
+    color: #0f172a !important;
+    border: 1px solid #94a3b8 !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background: #94a3b8 !important;
+    color: #ffffff !important;
 }
 
 [data-testid="stFileUploaderDropzone"] p {
