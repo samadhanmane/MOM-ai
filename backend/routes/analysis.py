@@ -2,11 +2,7 @@ import uuid
 import os
 import shutil
 from typing import Optional
-from fastapi import APIRouter, BackgroundTasks, UploadFile, File, Form, HTTPException, status
-from pydantic import BaseModel
-
-from backend.services.session_service import session_service
-from backend.services.pipeline_service import execute_analysis_pipeline
+from fastapi import APIRouter, BackgroundTasks, UploadFile, File, Form, HTTPException, status, Request
 
 router = APIRouter(prefix="/api", tags=["Analysis"])
 
@@ -14,37 +10,42 @@ ALLOWED_EXTENSIONS = {".mp4", ".mp3", ".wav", ".m4a", ".webm", ".mov"}
 TEMP_UPLOAD_DIR = "temp_uploads"
 os.makedirs(TEMP_UPLOAD_DIR, exist_ok=True)
 
-class YouTubeAnalysisRequest(BaseModel):
-    source: str
-    language: Optional[str] = "english"
-
 @router.post("/analyze")
 async def analyze_input(
+    request: Request,
     background_tasks: BackgroundTasks,
     file: Optional[UploadFile] = File(None),
     source: Optional[str] = Form(None),
-    language: Optional[str] = Form("english"),
-    json_payload: Optional[YouTubeAnalysisRequest] = None
+    language: Optional[str] = Form(None)
 ):
     """
     Starts analysis pipeline for either uploaded audio/video file or YouTube URL.
+    Supports application/json, multipart/form-data, and form fields.
     Returns analysis_id immediately for status polling.
     """
     target_source = None
     target_language = language or "english"
     is_temp = False
 
-    # Case A: JSON Payload (YouTube URL)
-    if json_payload and json_payload.source:
-        target_source = json_payload.source.strip()
-        target_language = json_payload.language or "english"
+    content_type = request.headers.get("content-type", "").lower()
 
-    # Case B: Form data YouTube URL
-    elif source:
+    # Case A: Check application/json request body
+    if "application/json" in content_type:
+        try:
+            body = await request.json()
+            if isinstance(body, dict):
+                target_source = body.get("source")
+                if body.get("language"):
+                    target_language = body.get("language")
+        except Exception as json_err:
+            print(f"Failed to parse JSON body: {json_err}")
+
+    # Case B: Form data source field
+    if not target_source and source:
         target_source = source.strip()
 
     # Case C: File upload
-    elif file and file.filename:
+    if not target_source and file and file.filename:
         ext = os.path.splitext(file.filename)[1].lower()
         if ext not in ALLOWED_EXTENSIONS:
             raise HTTPException(
@@ -66,10 +67,10 @@ async def analyze_input(
                 detail=f"Failed to save uploaded file: {str(e)}"
             )
 
-    if not target_source:
+    if not target_source or not str(target_source).strip():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Must provide either a file upload or a valid YouTube source URL."
+            detail="Must provide either an uploaded file or a valid YouTube source URL."
         )
 
     analysis_id = str(uuid.uuid4())
