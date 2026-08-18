@@ -499,67 +499,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─────────────────────────────────────────
-   SIDEBAR TOGGLE CONTROL (WHEN CLOSED)
+   PERMANENT SIDEBAR — HIDE COLLAPSE BUTTONS
 ───────────────────────────────────────── */
+[data-testid="stSidebarCollapseButton"],
 [data-testid="stSidebarCollapsedControl"],
 [data-testid="collapsedControl"],
-div[data-testid="stSidebarCollapseButton"] {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: fixed !important;
-    top: 14px !important;
-    left: 14px !important;
-    z-index: 9999999 !important;
+button[aria-label="Close sidebar"],
+button[aria-label="Collapse sidebar"],
+button[aria-label="Open sidebar"],
+button[aria-label="Expand sidebar"],
+section[data-testid="stSidebar"] button[kind="header"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-[data-testid="stSidebarCollapsedControl"] button,
-[data-testid="collapsedControl"] button,
-button[data-testid="stSidebarCollapseButton"],
-button[aria-label*="sidebar" i],
-button[aria-label*="Sidebar" i],
-header button[kind="header"] {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background: #ffffff !important;
-    border: 1.5px solid #cbd5e1 !important;
-    border-radius: 10px !important;
-    color: #1e293b !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    min-height: 42px !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] button:hover,
-[data-testid="collapsedControl"] button:hover,
-button[data-testid="stSidebarCollapseButton"]:hover,
-button[aria-label*="sidebar" i]:hover,
-button[aria-label*="Sidebar" i]:hover,
-header button[kind="header"]:hover {
-    background: #fff7ed !important;
-    border-color: #f97316 !important;
-    color: #ea580c !important;
-    transform: scale(1.05) !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] svg,
-[data-testid="collapsedControl"] svg,
-button[data-testid="stSidebarCollapseButton"] svg,
-button[aria-label*="sidebar" i] svg,
-header button[kind="header"] svg {
-    fill: #1e293b !important;
-    stroke: #1e293b !important;
-    color: #1e293b !important;
-    width: 22px !important;
-    height: 22px !important;
-}
 
 
 
