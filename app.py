@@ -32,20 +32,30 @@ st.markdown("""
     --accent: #4a90d9;
     --accent-light: #6aafe6;
     --accent-soft: #e8f0fe;
-    --text: #0f172a;
-    --text-soft: #334155;
-    --text-muted: #64748b;
+    --text: #000000;
+    --text-soft: #111827;
+    --text-muted: #374151;
     --success: #2e9b6e;
     --success-soft: #e6f5ef;
     --warning: #e8a838;
     --danger: #d95c5c;
 }
 
-/* ── Global Reset ── */
-html, body, [class*="css"] {
+/* ── Global Reset & High Contrast Pure Black Text ── */
+html, body, [class*="css"],
+p, span, li, ol, ul, div, label,
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stMarkdownContainer"] span,
+[data-testid="stMarkdownContainer"] strong,
+[data-testid="stMarkdownContainer"] em,
+[data-testid="stExpander"],
+[data-testid="stExpander"] *,
+.card-content {
     font-family: 'DM Sans', sans-serif;
-    background-color: var(--bg) !important;
-    color: var(--text) !important;
+    color: #000000 !important;
+    opacity: 1 !important;
 }
 
 header[data-testid="stHeader"] {
@@ -225,22 +235,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-title {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.6rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: #000000 !important;
+    margin-bottom: 0.6rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
 }
 
 .card-content {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: var(--text-soft);
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    color: #000000 !important;
 }
+
 
 /* ── Badges ── */
 .badge {
@@ -690,12 +701,15 @@ section[data-testid="stSidebar"] button[kind="header"] {
     background: var(--accent-soft);
     border: 1px solid #c5d9f0;
     align-self: flex-end;
+    color: #000000 !important;
 }
 .bot-bubble {
     background: var(--success-soft);
     border: 1px solid #b8dec9;
     align-self: flex-start;
+    color: #000000 !important;
 }
+
 
 /* scrollbar */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
