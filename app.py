@@ -484,16 +484,12 @@ h1, h2, h3, h4, h5, h6 {
     color: #334155 !important;
     border: 1px solid #cbd5e1 !important;
     border-radius: 9px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.85rem !important;
     font-weight: 600 !important;
-    padding: 0.55rem 1.2rem !important;
+    padding: 0.6rem 1.5rem !important;
     box-shadow: none !important;
     white-space: nowrap !important;
-    min-width: auto !important;
-    width: auto !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+    overflow: visible !important;
     transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease !important;
 }
 
@@ -904,6 +900,42 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #c5cbd5; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Sidebar toggle button (visible when sidebar is collapsed) ── */
+[data-testid="stSidebarCollapsedControl"] {
+    display: block !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] button {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    position: fixed !important;
+    top: 14px !important;
+    left: 14px !important;
+    z-index: 999 !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] button:hover {
+    background: #fff7ed !important;
+    border-color: #f97316 !important;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1) !important;
+    transform: none !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] button svg {
+    fill: #334155 !important;
+    width: 18px !important;
+    height: 18px !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
