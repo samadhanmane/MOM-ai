@@ -448,24 +448,28 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ─────────────────────────────────────
-   FILE UPLOADER CONTENT
+   FILE UPLOADER CONTENT — center everything inside
 ───────────────────────────────────── */
 
-[data-testid="stFileUploaderDropzone"] > div {
+[data-testid="stFileUploaderDropzone"] > div,
+[data-testid="stFileUploaderDropzone"] > div > div,
+[data-testid="stFileUploaderDropzone"] > section,
+[data-testid="stFileUploaderDropzone"] > section > div,
+[data-testid="stFileUploaderDropzone"] section[data-testid="stFileUploaderDropzoneInput"] {
 
     display: flex !important;
-
     flex-direction: column !important;
-
     align-items: center !important;
-
     justify-content: center !important;
-
-    gap: 0.6rem !important;
-
     width: 100% !important;
-
     text-align: center !important;
+}
+
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] label {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
 }
 
 
