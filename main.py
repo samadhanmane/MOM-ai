@@ -42,7 +42,7 @@ if __name__ == "__main__":
     import subprocess
 
     # If --cli flag is not passed, default to launching Streamlit UI or prompt user
-    print("✨ Starting Aura AI Video Assistant...")
+    print("✨ Starting MOM AI Video Assistant...")
     if "--cli" in sys.argv:
         source = input("Enter YouTube URL or local file path: ").strip()
         language = input("Language (english/hinglish): ").strip() or "english"

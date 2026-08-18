@@ -11,7 +11,7 @@ load_dotenv()
 
 # ─── Page Config ────────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Aura — AI Video Assistant",
+    page_title="MOM — AI Video Assistant",
     page_icon="✦",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -577,7 +577,7 @@ with st.sidebar:
     <div class="sidebar-brand">
         <div class="sidebar-brand-icon">✦</div>
         <div>
-            <div class="sidebar-brand-name">Aura</div>
+            <div class="sidebar-brand-name">MOM</div>
             <div class="sidebar-brand-sub">AI Video Assistant</div>
         </div>
     </div>
@@ -595,7 +595,7 @@ with st.sidebar:
             st.session_state.pipeline_steps = {}
             st.rerun()
 
-    st.markdown('<div class="sidebar-footer">Aura v2.0 · Whisper · RAG · Mistral</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-footer">MOM v2.0 · Whisper · RAG · Mistral</div>', unsafe_allow_html=True)
 
 
 # ─── Main Area ──────────────────────────────────────────────────────────────────
@@ -807,8 +807,8 @@ if st.session_state.result:
     st.markdown("---")
 
     # ── RAG Chat ──────────────────────────────────────────────────────────────
-    st.markdown('<div style="font-size:1.2rem;font-weight:700;margin-bottom:0.8rem;">💬 Ask Aura</div>', unsafe_allow_html=True)
-    st.markdown('<div style="font-size:0.85rem;color:var(--text-soft);margin-bottom:1rem;">Ask questions about the meeting — Aura will search the transcript for answers.</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:1.2rem;font-weight:700;margin-bottom:0.8rem;">💬 Ask MOM</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:0.85rem;color:var(--text-soft);margin-bottom:1rem;">Ask questions about the meeting — MOM will search the transcript for answers.</div>', unsafe_allow_html=True)
 
     # Chat history using Streamlit chat messages
     if st.session_state.chat_history:
