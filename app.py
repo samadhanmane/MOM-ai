@@ -305,39 +305,83 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
 }
 
-/* ── File Uploader styling ── */
+/* ─────────────────────────────────────────
+   FILE UPLOADER
+───────────────────────────────────────── */
+
 [data-testid="stFileUploaderDropzone"] {
-    border: 2px dashed #cbd5e1 !important;
+    border: 1.5px dashed #cbd5e1 !important;
     border-radius: 14px !important;
-    background: #e2e8f0 !important;
-    padding: 1.8rem !important;
-    transition: all 0.2s ease !important;
+
+    /* Soft neutral background */
+    background: #f8fafc !important;
+
+    padding: 1.6rem !important;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease !important;
 }
 
 
+/* Hover */
+
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: #f97316 !important;
+    background: #fffaf5 !important;
+
+    box-shadow:
+        0 4px 14px rgba(249, 115, 22, 0.08) !important;
+}
+
+
+/* Upload button */
 
 [data-testid="stFileUploaderDropzone"] button {
-    background: #cbd5e1 !important;
-    color: #000000 !important;
-    border: 1px solid #94a3b8 !important;
+    background: #ffffff !important;
+
+    color: #475569 !important;
+
+    border: 1px solid #dbe3ee !important;
+    border-radius: 8px !important;
+
     font-weight: 600 !important;
+    font-size: 0.78rem !important;
+
     box-shadow: none !important;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease !important;
 }
 
 
+/* Upload button hover */
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background: #fff7ed !important;
+
+    border-color: #f97316 !important;
+
+    color: #ea580c !important;
+}
+
+
+/* Dropzone text */
 
 [data-testid="stFileUploaderDropzone"] p {
-    color: #000000 !important;
+    color: #64748b !important;
+
     font-weight: 500 !important;
 }
+
+
+/* File uploader small text */
 
 [data-testid="stFileUploaderDropzone"] small {
-    color: #000000 !important;
-    font-weight: 500 !important;
-}
-
-[data-testid="stFileUploaderDropzone"] div[data-testid="stMarkdownContainer"] {
-    color: #000000 !important;
+    color: #94a3b8 !important;
 }
 
 /* ── Pipeline Steps ── */
@@ -630,41 +674,114 @@ with col2:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── Upload Section ─────────────────────────────────────────────────────────────
-
 if st.session_state.result is None:
+
+    # ─────────────────────────────────────────
+    # START ANALYSIS
+    # ─────────────────────────────────────────
+
     st.markdown("""
-    <div style="font-size:1.2rem;font-weight:700;margin-bottom:0.3rem;color:#000000;">📤 Start a new analysis</div>
-    <div style="font-size:0.9rem;color:#000000;margin-bottom:1.5rem;">
-        Paste a YouTube URL or drop a media file below.
+    <div class="analysis-header">
+
+        <div class="analysis-title">
+            📤 Start a new analysis
+        </div>
+
+        <div class="analysis-description">
+            Paste a YouTube URL or drop a media file below.
+        </div>
+
     </div>
     """, unsafe_allow_html=True)
 
-    col_upload, col_url = st.columns([3, 2], gap="medium")
+
+    # ─────────────────────────────────────────
+    # INPUTS
+    # ─────────────────────────────────────────
+
+    col_upload, col_url = st.columns(
+        [3, 2],
+        gap="medium"
+    )
+
+
+    # ─────────────── FILE UPLOAD ───────────────
 
     with col_upload:
+
+        st.markdown("""
+        <div class="input-label">
+            MEDIA FILE
+        </div>
+        """, unsafe_allow_html=True)
+
         uploaded_file = st.file_uploader(
             "Upload media",
-            type=["mp4", "mov", "webm", "mp3", "wav", "m4a", "ogg", "flac"],
+            type=[
+                "mp4",
+                "mov",
+                "webm",
+                "mp3",
+                "wav",
+                "m4a",
+                "ogg",
+                "flac"
+            ],
             label_visibility="collapsed",
             help="Drag and drop or click to browse"
         )
-        st.markdown('<div style="font-size:0.75rem;color:#000000;margin-top:6px;">200MB per file • MP4, MOV, WEBM, MP3, WAV, M4A, OGG, FLAC</div>', unsafe_allow_html=True)
+
+        st.markdown("""
+        <div class="input-helper">
+            200MB per file · MP4, MOV, WEBM, MP3, WAV, M4A, OGG, FLAC
+        </div>
+        """, unsafe_allow_html=True)
+
+
+    # ─────────────── YOUTUBE ───────────────
 
     with col_url:
-        st.markdown('<div style="font-size:0.8rem;color:#000000;font-weight:600;margin-bottom:6px;">YouTube URL</div>', unsafe_allow_html=True)
+
+        st.markdown("""
+        <div class="input-label">
+            YOUTUBE URL
+        </div>
+        """, unsafe_allow_html=True)
+
         source_url = st.text_input(
             "YouTube URL",
             placeholder="https://www.youtube.com/watch?v=...",
             label_visibility="collapsed"
         )
-        st.markdown('<div style="font-size:0.7rem;color:#000000;margin-top:4px;">Paste any YouTube video link</div>', unsafe_allow_html=True)
 
-    # Button row
-    col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 2])
+        st.markdown("""
+        <div class="input-helper">
+            Paste any YouTube video link
+        </div>
+        """, unsafe_allow_html=True)
+
+
+    # ─────────────────────────────────────────
+    # ANALYZE BUTTON
+    # ─────────────────────────────────────────
+
+    st.markdown("<div style='height:18px'></div>",
+                unsafe_allow_html=True)
+
+    col_btn1, col_btn2, col_btn3 = st.columns(
+        [1, 1.2, 1],
+        gap="small"
+    )
+
     with col_btn2:
-        button_disabled = st.session_state.processing or st.session_state.pipeline_done
+
+        button_disabled = (
+            st.session_state.processing
+            or st.session_state.pipeline_done
+        )
+
         analyze_btn = st.button(
-            "✦ Analyze Video",
+            "✦  Analyze Video",
             use_container_width=True,
             disabled=button_disabled
         )
