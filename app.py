@@ -359,29 +359,297 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* Upload button hover */
+/* =========================================================
+   AURA — LIGHT INPUT AREA
+   ========================================================= */
+
+
+/* ─────────────────────────────────────
+   HEADER
+───────────────────────────────────── */
+
+.analysis-header {
+    margin-bottom: 1.55rem;
+}
+
+.analysis-title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    color: #1e293b;
+
+    letter-spacing: -0.01em;
+
+    margin-bottom: 0.35rem;
+}
+
+.analysis-description {
+    font-size: 0.88rem;
+
+    color: #475569;
+
+    line-height: 1.5;
+}
+
+
+/* ─────────────────────────────────────
+   FILE UPLOADER
+───────────────────────────────────── */
+
+[data-testid="stFileUploaderDropzone"] {
+
+    min-height: 132px !important;
+
+    border: 2px dashed #c4d2e3 !important;
+
+    border-radius: 14px !important;
+
+    background: #f8fafc !important;
+
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease !important;
+}
+
+
+/* Hover */
+
+[data-testid="stFileUploaderDropzone"]:hover {
+
+    border-color: #f97316 !important;
+
+    background: #fffaf5 !important;
+}
+
+
+/* ─────────────────────────────────────
+   FILE UPLOADER CONTENT
+───────────────────────────────────── */
+
+[data-testid="stFileUploaderDropzone"] > div {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 1.2rem !important;
+
+    width: 100% !important;
+}
+
+
+/* ─────────────────────────────────────
+   UPLOAD BUTTON
+───────────────────────────────────── */
+
+[data-testid="stFileUploaderDropzone"] button {
+
+    background: #ffffff !important;
+
+    color: #334155 !important;
+
+    border: 1px solid #cbd5e1 !important;
+
+    border-radius: 9px !important;
+
+    font-size: 0.8rem !important;
+
+    font-weight: 600 !important;
+
+    padding: 0.55rem 1rem !important;
+
+    box-shadow: none !important;
+
+    white-space: nowrap !important;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease !important;
+}
+
 
 [data-testid="stFileUploaderDropzone"] button:hover {
+
     background: #fff7ed !important;
 
     border-color: #f97316 !important;
 
     color: #ea580c !important;
+
+    box-shadow: none !important;
 }
 
 
-/* Dropzone text */
+/* ─────────────────────────────────────
+   UPLOADER TEXT
+───────────────────────────────────── */
 
 [data-testid="stFileUploaderDropzone"] p {
+
     color: #64748b !important;
 
+    font-size: 0.82rem !important;
+
     font-weight: 500 !important;
+
+    margin: 0 !important;
+
+    white-space: nowrap !important;
 }
 
 
-/* File uploader small text */
-
 [data-testid="stFileUploaderDropzone"] small {
+
     color: #94a3b8 !important;
+
+}
+
+
+/* ─────────────────────────────────────
+   YOUTUBE LABEL
+───────────────────────────────────── */
+
+.youtube-label {
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+
+    color: #64748b;
+
+    margin-bottom: 0.55rem;
+}
+
+
+/* ─────────────────────────────────────
+   YOUTUBE INPUT
+───────────────────────────────────── */
+
+.stTextInput > div > div > input {
+
+    height: 46px !important;
+
+    background: #ffffff !important;
+
+    color: #334155 !important;
+
+    border: 1px solid #d7e0ea !important;
+
+    border-radius: 10px !important;
+
+    padding: 0.7rem 0.85rem !important;
+
+    font-size: 0.82rem !important;
+
+    box-shadow: none !important;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+
+/* Placeholder */
+
+.stTextInput > div > div > input::placeholder {
+
+    color: #94a3b8 !important;
+
+    opacity: 1 !important;
+}
+
+
+/* Focus */
+
+.stTextInput > div > div > input:focus {
+
+    border-color: #f97316 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(249, 115, 22, 0.08) !important;
+}
+
+
+/* ─────────────────────────────────────
+   BUTTON SPACING
+───────────────────────────────────── */
+
+.analyze-spacing {
+
+    height: 20px;
+
+}
+
+
+/* ─────────────────────────────────────
+   ANALYZE BUTTON
+───────────────────────────────────── */
+
+.stButton > button {
+
+    height: 54px !important;
+
+    background: #ffffff !important;
+
+    color: #334155 !important;
+
+    border: 1px solid #d7e0ea !important;
+
+    border-radius: 10px !important;
+
+    font-size: 0.85rem !important;
+
+    font-weight: 600 !important;
+
+    box-shadow: none !important;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease !important;
+}
+
+
+.stButton > button:hover {
+
+    background: #fffaf5 !important;
+
+    border-color: #f97316 !important;
+
+    color: #ea580c !important;
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 4px 12px rgba(249, 115, 22, 0.08) !important;
+}
+
+
+.stButton > button:disabled {
+
+    background: #f1f5f9 !important;
+
+    color: #94a3b8 !important;
+
+    border-color: #e2e8f0 !important;
+
+    box-shadow: none !important;
+
+    transform: none !important;
 }
 
 /* ── Pipeline Steps ── */
@@ -706,14 +974,40 @@ if st.session_state.result is None:
 
 
     # ─────────────── FILE UPLOAD ───────────────
+if st.session_state.result is None:
+
+    # ─────────────────────────────────────
+    # HEADER
+    # ─────────────────────────────────────
+
+    st.markdown("""
+    <div class="analysis-header">
+
+        <div class="analysis-title">
+            📤 <span>Start a new analysis</span>
+        </div>
+
+        <div class="analysis-description">
+            Paste a YouTube URL or drop a media file below.
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+
+    # ─────────────────────────────────────
+    # INPUT ROW
+    # ─────────────────────────────────────
+
+    col_upload, col_url = st.columns(
+        [3, 2],
+        gap="large"
+    )
+
+
+    # ───────────── FILE UPLOAD ─────────────
 
     with col_upload:
-
-        st.markdown("""
-        <div class="input-label">
-            MEDIA FILE
-        </div>
-        """, unsafe_allow_html=True)
 
         uploaded_file = st.file_uploader(
             "Upload media",
@@ -731,20 +1025,14 @@ if st.session_state.result is None:
             help="Drag and drop or click to browse"
         )
 
-        st.markdown("""
-        <div class="input-helper">
-            200MB per file · MP4, MOV, WEBM, MP3, WAV, M4A, OGG, FLAC
-        </div>
-        """, unsafe_allow_html=True)
 
-
-    # ─────────────── YOUTUBE ───────────────
+    # ───────────── YOUTUBE URL ─────────────
 
     with col_url:
 
         st.markdown("""
-        <div class="input-label">
-            YOUTUBE URL
+        <div class="youtube-label">
+            YouTube URL
         </div>
         """, unsafe_allow_html=True)
 
@@ -754,26 +1042,19 @@ if st.session_state.result is None:
             label_visibility="collapsed"
         )
 
-        st.markdown("""
-        <div class="input-helper">
-            Paste any YouTube video link
-        </div>
-        """, unsafe_allow_html=True)
 
-
-    # ─────────────────────────────────────────
+    # ─────────────────────────────────────
     # ANALYZE BUTTON
-    # ─────────────────────────────────────────
+    # ─────────────────────────────────────
 
-    st.markdown("<div style='height:18px'></div>",
-                unsafe_allow_html=True)
-
-    col_btn1, col_btn2, col_btn3 = st.columns(
-        [1, 1.2, 1],
-        gap="small"
+    st.markdown(
+        "<div class='analyze-spacing'></div>",
+        unsafe_allow_html=True
     )
 
-    with col_btn2:
+    col1, col2, col3 = st.columns([1, 1, 1])
+
+    with col2:
 
         button_disabled = (
             st.session_state.processing
@@ -781,7 +1062,7 @@ if st.session_state.result is None:
         )
 
         analyze_btn = st.button(
-            "✦  Analyze Video",
+            "✦ Analyze Video",
             use_container_width=True,
             disabled=button_disabled
         )
