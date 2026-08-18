@@ -455,13 +455,17 @@ h1, h2, h3, h4, h5, h6 {
 
     display: flex !important;
 
+    flex-direction: column !important;
+
     align-items: center !important;
 
     justify-content: center !important;
 
-    gap: 1.2rem !important;
+    gap: 0.6rem !important;
 
     width: 100% !important;
+
+    text-align: center !important;
 }
 
 
