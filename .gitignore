@@ -1,47 +1,29 @@
-# Environment Variables & Secret API Keys
+# Environment variables & API keys
 .env
 .env.*
-!.env.example
 
-# Python Virtual Environments
+# Python virtual environment
 .venv/
 venv/
-env/
 ENV/
+env/
 
-# Python Cache & Bytecode
+# Python bytecode & cache
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 .pytest_cache/
-.coverage
-htmlcov/
 
-# Local Temporary Downloads & Uploads
+# Local media downloads & Vector DB
 downloades/
-temp_uploads/
-
-# ChromaDB Vector Database Persistence
 vector_db/
+temp/
+scratch/
 
-# Node.js & Frontend Build Outputs
-node_modules/
-frontend/node_modules/
-frontend/dist/
-frontend/dist-ssr/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Streamlit local runtime state (blacklists are fine, but ignore local secrets if any)
+.streamlit/secrets.toml
 
-# IDE & Editor Settings
+# IDE settings
 .vscode/
-!.vscode/settings.json
 .idea/
-*.swp
-*.swo
-
-# System Files
 .DS_Store
-Thumbs.db

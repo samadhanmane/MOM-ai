@@ -1,34 +1,32 @@
-# ── CPU PyTorch Index for Lightweight Deployment ─────────────────────────────
---extra-index-url https://download.pytorch.org/whl/cpu
+# ── AI Meeting Assistant ── requirements.txt ──────────────────────────────────
+# Python >= 3.10 recommended
 
-# ── Audio / Video Acquisition & Speech-to-Text ────────────────────────────────
-yt-dlp>=2024.4.9
-pydub>=0.25.1
-ffmpeg-python>=0.2.0
-openai-whisper>=20231117
-torch>=2.2.0
-torchaudio>=2.2.0
+# ── Audio / Video acquisition ─────────────────────────────────────────────────
+yt-dlp>=2024.4.9                  # Download audio from YouTube URLs
+pydub>=0.25.1                     # Audio file manipulation / format conversion
+ffmpeg-python>=0.2.0              # FFmpeg bindings
 
-# ── LLM Orchestration — LangChain LCEL + Mistral ──────────────────────────────
+# ── Translation & STT ─────────────────────────────────────────────────────────
+requests>=2.32.0                  # API calls to Sarvam AI / Mistral AI
+deep-translator>=1.11.4           # Lightweight translation wrapper
+openai-whisper                    # Local Whisper model transcription
+
+# ── LLM Orchestration — LangChain LCEL + Mistral AI ─────────────────────────────
 langchain>=0.2.0
 langchain-core>=0.2.0
 langchain-community>=0.2.0
-langchain-mistralai>=0.1.0
-mistralai>=0.4.0
+langchain-mistralai>=0.1.0        # Mistral LLM & Mistral Embeddings (Zero PyTorch!)
+mistralai>=0.4.0                  # Official Mistral Python client
 
-# ── RAG Pipeline ──────────────────────────────────────────────────────────────
-chromadb>=0.5.0
-langchain-chroma>=0.1.0
-sentence-transformers>=3.0.0
-langchain-huggingface>=0.0.3
-huggingface-hub>=0.23.0
-tiktoken>=0.7.0
+# ── RAG Vector Store ──────────────────────────────────────────────────────────
+chromadb>=0.5.0                   # Fast local vector store
+langchain-chroma>=0.1.0           # LangChain Chroma vector integration
+tiktoken>=0.7.0                   # Token counting for text splitting
 
-# ── Utilities & FastAPI Backend ────────────────────────────────────────────────
-python-dotenv>=1.0.0
+# ── Streamlit UI ──────────────────────────────────────────────────────────────
+streamlit>=1.35.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0              # Load API keys from .env
 numpy>=1.26.0
 tqdm>=4.66.0
-requests>=2.32.0
-fastapi>=0.111.0
-uvicorn>=0.30.0
-python-multipart>=0.0.9

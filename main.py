@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
+import os
 
 from utils.audio_processor import process_input
 from core.transcriber import transcribe_all
@@ -37,28 +38,37 @@ def run_pipeline(source :str, language :str = "english") -> dict:
     }
 
 if __name__ == "__main__":
-    # CLI entry point
-    source = input("Enter YouTube URL or local file path: ").strip()
-    language = input("Language (english/hinglish): ").strip() or "english"
-    result = run_pipeline(source, language)
+    import sys
+    import subprocess
 
-    print("\n" + "=" * 60)
-    print(f"📌 Title: {result['title']}")
-    print(f"\n📋 Summary:\n{result['summary']}")
-    print(f"\n✅ Action Items:\n{result['action_items']}")
-    print(f"\n🔑 Key Decisions:\n{result['key_decisions']}")
-    print(f"\n❓ Open Questions:\n{result['open_questions']}")
-    print("=" * 60)
+    # If --cli flag is not passed, default to launching Streamlit UI or prompt user
+    print("✨ Starting Aura AI Video Assistant...")
+    if "--cli" in sys.argv:
+        source = input("Enter YouTube URL or local file path: ").strip()
+        language = input("Language (english/hinglish): ").strip() or "english"
+        result = run_pipeline(source, language)
 
-    # Phase 2 — Chat with your meeting via RAG
-    print("\n💬 Chat with your meeting (type 'exit' to quit)\n")
-    rag_chain = result["rag_chain"]
-    while True:
-        question = input("You: ").strip()
-        if question.lower() in ["exit", "quit", "q"]:
-            print("👋 Goodbye!")
-            break
-        if not question:
-            continue
-        answer = ask_question(rag_chain, question)
-        print(f"\n🤖 Assistant: {answer}\n")
+        print("\n" + "=" * 60)
+        print(f"📌 Title: {result['title']}")
+        print(f"\n📋 Summary:\n{result['summary']}")
+        print(f"\n✅ Action Items:\n{result['action_items']}")
+        print(f"\n🔑 Key Decisions:\n{result['key_decisions']}")
+        print(f"\n❓ Open Questions:\n{result['open_questions']}")
+        print("=" * 60)
+
+        # Phase 2 — Chat with your meeting via RAG
+        print("\n💬 Chat with your meeting (type 'exit' to quit)\n")
+        rag_chain = result["rag_chain"]
+        while True:
+            question = input("You: ").strip()
+            if question.lower() in ["exit", "quit", "q"]:
+                print("👋 Goodbye!")
+                break
+            if not question:
+                continue
+            answer = ask_question(rag_chain, question)
+            print(f"\n🤖 Assistant: {answer}\n")
+    else:
+        print("🚀 Launching Streamlit Web UI on http://localhost:8501 ...")
+        app_path = os.path.join(os.path.dirname(__file__), "app.py")
+        subprocess.run([sys.executable, "-m", "streamlit", "run", app_path])

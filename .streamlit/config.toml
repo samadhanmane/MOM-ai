@@ -1,0 +1,7 @@
+[server]
+fileWatcherType = "auto"
+folderWatchBlacklist = ["*/site-packages/*", "*/transformers/*", "*/torch/*"]
+
+[runner]
+magicEnabled = true
+fastReruns = true

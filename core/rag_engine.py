@@ -50,7 +50,7 @@ def build_rag_chain(transcript:str):
 
 def load_rag_chain():
     vector_Store = load_vector_store()
-    retriever = get_retriever()
+    retriever = get_retriever(vector_Store)
     llm = get_llm()
 
     prompt = ChatPromptTemplate.from_messages([
@@ -86,9 +86,7 @@ Context from meeting transcript:
 
 
 def ask_question(rag_chain, question:str)-> str:
-    print(f"Questions: {question}")
     answer = rag_chain.invoke(question)
-    print(f"answer:{answer}")
     return answer
 
 

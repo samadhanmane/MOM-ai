@@ -1,25 +1,26 @@
-import whisper
 import os
 import requests
 from pydub import AudioSegment
 
-
 SARVAM_PIECE_SECONDS = 25
-
 WHISPER_MODEL = os.getenv("WHISPER_MODEL","small")
 SARVAM_API_KEY = os.getenv("SARVAM_API_KEY")
 SARVAM_STT_TRANSLATE_URL = "https://api.sarvam.ai/speech-to-text-translate"
 SARVAM_MODEL = os.getenv("SARVAM_STT_MODEL", "saaras:v2.5")
 _model = None
+
 def load_model():
     global _model
-
     if _model is None:
-        print(f"Loading model ...")
+        try:
+            import whisper
+        except ImportError:
+            raise RuntimeError("Local whisper/torch is not installed. Please set SARVAM_API_KEY in .env to use API transcription.")
+        print("Loading Whisper model ...")
         _model = whisper.load_model(WHISPER_MODEL)
         print("Whisper model loaded successfully")
-
     return _model
+
 
 def transcribe_chunk_whisper(chunk_path : str) -> str:
     model = load_model()
