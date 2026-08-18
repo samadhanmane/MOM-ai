@@ -305,38 +305,99 @@ h1, h2, h3, h4, h5, h6 {
     transform: none !important;
 }
 /* ─────────────────────────────────────────
+   HEADER & LABELS
+───────────────────────────────────────── */
+.analysis-header {
+    margin-bottom: 1.5rem;
+}
+
+.analysis-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.35rem;
+}
+
+.analysis-description {
+    font-size: 0.88rem;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.youtube-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────
    FILE UPLOADER & BUTTON FIX
 ───────────────────────────────────────── */
+[data-testid="stFileUploader"] {
+    width: 100% !important;
+}
 
 [data-testid="stFileUploaderDropzone"] {
     border: 2px dashed #cbd5e1 !important;
     border-radius: 14px !important;
     background: #f8fafc !important;
-    padding: 2rem !important;          /* More breathing room */
-    min-height: 140px !important;      /* Taller drop zone */
+    padding: 2rem 1rem !important;
+    min-height: 130px !important;
     display: flex !important;
+    flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: border-color 0.2s ease, background 0.2s ease !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    overflow: visible !important;
 }
 
 [data-testid="stFileUploaderDropzone"]:hover {
     border-color: #f97316 !important;
     background: #fffaf5 !important;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.08) !important;
 }
 
-/* Fix for the small button inside */
+[data-testid="stFileUploaderDropzone"] > div,
+[data-testid="stFileUploaderDropzone"] > div > div,
+[data-testid="stFileUploaderDropzone"] section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    overflow: visible !important;
+}
+
 [data-testid="stFileUploaderDropzone"] button {
     background: #ffffff !important;
     color: #334155 !important;
     border: 1px solid #cbd5e1 !important;
     border-radius: 9px !important;
-    font-size: 0.9rem !important;      /* Slightly larger text */
+    font-size: 0.88rem !important;
     font-weight: 600 !important;
-    padding: 0.6rem 1.8rem !important; /* INCREASE THIS to make the button wider */
-    box-shadow: none !important;
+    padding: 0.6rem 2.2rem !important;
+    min-width: 170px !important;
+    width: auto !important;
+    max-width: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
     white-space: nowrap !important;
-    min-width: 120px !important;       /* Minimum width so "Upload" isn't cut off */
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
     transition: all 0.2s ease !important;
 }
 
@@ -344,377 +405,142 @@ h1, h2, h3, h4, h5, h6 {
     background: #fff7ed !important;
     border-color: #f97316 !important;
     color: #ea580c !important;
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1) !important;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.12) !important;
 }
 
-/* Fix the text to prevent cut-off */
+[data-testid="stFileUploaderDropzone"] button * {
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: nowrap !important;
+}
+
 [data-testid="stFileUploaderDropzone"] p {
     color: #64748b !important;
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
     font-weight: 500 !important;
     margin: 0 !important;
+    text-align: center !important;
 }
 
 [data-testid="stFileUploaderDropzone"] small {
     color: #94a3b8 !important;
     font-size: 0.75rem !important;
-}
-
-
-/* ─────────────────────────────────────────
-   DROPZONE HOVER
-───────────────────────────────────────── */
-
-[data-testid="stFileUploaderDropzone"]:hover {
-    border-color: #f97316 !important;
-    background: #fffaf5 !important;
-
-    box-shadow:
-        0 4px 14px rgba(249, 115, 22, 0.08) !important;
-}
-
-
-/* ─────────────────────────────────────────
-   UPLOAD BUTTON — ONLY CHANGE THIS
-───────────────────────────────────────── */
-
-/* Upload button */
-
-[data-testid="stFileUploaderDropzone"] button {
-    background: #ffffff !important;
-
-    color: #334155 !important;
-
-    border: 1px solid #cbd5e1 !important;
-
-    border-radius: 9px !important;
-
-    font-weight: 600 !important;
-
-    font-size: 0.8rem !important;
-
-    min-width: 124px !important;
-    width: auto !important;
-
-    padding: 0.55rem 16px !important;
-
-    white-space: nowrap !important;
-
-    box-shadow: none !important;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease !important;
-}
-
-
-
-
-
-/* ─────────────────────────────────────────
-   UPLOAD BUTTON HOVER
-───────────────────────────────────────── */
-
-[data-testid="stFileUploaderDropzone"] button:hover {
-    background: #fff7ed !important;
-
-    color: #ea580c !important;
-
-    border-color: #f97316 !important;
-
-    box-shadow: none !important;
-}
-
-/* ─────────────────────────────────────
-   HEADER
-───────────────────────────────────── */
-
-.analysis-header {
-    margin-bottom: 1.55rem;
-}
-
-.analysis-title {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-
-    font-size: 1.2rem;
-    font-weight: 700;
-
-    color: #1e293b;
-
-    letter-spacing: -0.01em;
-
-    margin-bottom: 0.35rem;
-}
-
-.analysis-description {
-    font-size: 0.88rem;
-
-    color: #475569;
-
-    line-height: 1.5;
-}
-
-
-
-
-[data-testid="stFileUploaderDropzone"] {
-    border: 2px dashed #cbd5e1 !important;
-    border-radius: 14px !important;
-    background: #f8fafc !important;
-    padding: 1.5rem !important;
-    min-height: 120px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: hidden !important;
-    transition: border-color 0.2s ease, background 0.2s ease !important;
-}
-
-[data-testid="stFileUploaderDropzone"]:hover {
-    border-color: #f97316 !important;
-    background: #fffaf5 !important;
-}
-
-/* Fix for button text overflow */
-[data-testid="stFileUploaderDropzone"] button {
-    background: #ffffff !important;
-    color: #334155 !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 9px !important;
-    font-size: 0.85rem !important;
-    font-weight: 600 !important;
-    padding: 0.6rem 1.5rem !important;
-    box-shadow: none !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
-    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease !important;
-}
-
-[data-testid="stFileUploaderDropzone"] button:hover {
-    background: #fff7ed !important;
-    border-color: #f97316 !important;
-    color: #ea580c !important;
-    box-shadow: none !important;
-}
-
-/* Center the upload content */
-[data-testid="stFileUploaderDropzone"] > div,
-[data-testid="stFileUploaderDropzone"] > div > div {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
     text-align: center !important;
 }
 
-/* Hide the small text that overflows */
 [data-testid="stFileUploader"] > div > small {
     display: none !important;
 }
 
-/* Fix text wrapping */
-[data-testid="stFileUploaderDropzone"] p {
-    color: #64748b !important;
-    font-size: 0.82rem !important;
-    font-weight: 500 !important;
-    margin: 0 !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-}
-
-[data-testid="stFileUploaderDropzone"] small {
-    color: #94a3b8 !important;
-    font-size: 0.7rem !important;
-}
-
-/* ─────────────────────────────────────
-   FILE UPLOADER CONTENT — center everything inside
-───────────────────────────────────── */
-
-[data-testid="stFileUploaderDropzone"] > div,
-[data-testid="stFileUploaderDropzone"] > div > div,
-[data-testid="stFileUploaderDropzone"] > section,
-[data-testid="stFileUploaderDropzone"] > section > div,
-[data-testid="stFileUploaderDropzone"] section[data-testid="stFileUploaderDropzoneInput"] {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    text-align: center !important;
-}
-
-[data-testid="stFileUploaderDropzone"] span,
-[data-testid="stFileUploaderDropzone"] label {
-    display: flex !important;
-    justify-content: center !important;
-    width: 100% !important;
-}
-
-
-/* ─────────────────────────────────────
-   UPLOADER TEXT
-───────────────────────────────────── */
-
-[data-testid="stFileUploaderDropzone"] p {
-
-    color: #64748b !important;
-
-    font-size: 0.82rem !important;
-
-    font-weight: 500 !important;
-
-    margin: 0 !important;
-
-    white-space: nowrap !important;
-}
-
-
-[data-testid="stFileUploaderDropzone"] small {
-
-    color: #94a3b8 !important;
-
-}
-
-
-/* ─────────────────────────────────────
-   YOUTUBE LABEL
-───────────────────────────────────── */
-
-.youtube-label {
-
-    font-size: 0.72rem;
-
-    font-weight: 600;
-
-    color: #64748b;
-
-    margin-bottom: 0.55rem;
-}
-
-
-/* ─────────────────────────────────────
+/* ─────────────────────────────────────────
    YOUTUBE INPUT
-───────────────────────────────────── */
-
+───────────────────────────────────────── */
 .stTextInput > div > div > input {
-
-    height: 46px !important;
-
+    height: 48px !important;
     background: #ffffff !important;
-
     color: #334155 !important;
-
     border: 1px solid #d7e0ea !important;
-
     border-radius: 10px !important;
-
     padding: 0.7rem 0.85rem !important;
-
-    font-size: 0.82rem !important;
-
+    font-size: 0.85rem !important;
     box-shadow: none !important;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
-
-
-/* Placeholder */
 
 .stTextInput > div > div > input::placeholder {
-
     color: #94a3b8 !important;
-
     opacity: 1 !important;
 }
 
-
-/* Focus */
-
 .stTextInput > div > div > input:focus {
-
     border-color: #f97316 !important;
-
-    box-shadow:
-        0 0 0 3px rgba(249, 115, 22, 0.08) !important;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.08) !important;
 }
 
-
-/* ─────────────────────────────────────
-   BUTTON SPACING
-───────────────────────────────────── */
-
-.analyze-spacing {
-
-    height: 20px;
-
-}
-
-
-/* ─────────────────────────────────────
+/* ─────────────────────────────────────────
    ANALYZE BUTTON
-───────────────────────────────────── */
+───────────────────────────────────────── */
+.analyze-spacing {
+    height: 16px;
+}
 
 .stButton > button {
-
-    height: 54px !important;
-
+    height: 50px !important;
     background: #ffffff !important;
-
     color: #334155 !important;
-
     border: 1px solid #d7e0ea !important;
-
     border-radius: 10px !important;
-
-    font-size: 0.85rem !important;
-
+    font-size: 0.88rem !important;
     font-weight: 600 !important;
-
-    box-shadow: none !important;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.15s ease !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.2s ease !important;
 }
 
-
-.stButton > button:hover {
-
+.stButton > button:hover:not(:disabled) {
     background: #fffaf5 !important;
-
     border-color: #f97316 !important;
-
     color: #ea580c !important;
-
     transform: translateY(-1px) !important;
-
-    box-shadow:
-        0 4px 12px rgba(249, 115, 22, 0.08) !important;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.12) !important;
 }
-
 
 .stButton > button:disabled {
-
     background: #f1f5f9 !important;
-
     color: #94a3b8 !important;
-
     border-color: #e2e8f0 !important;
-
     box-shadow: none !important;
-
     transform: none !important;
+    cursor: not-allowed !important;
 }
+
+/* ─────────────────────────────────────────
+   SIDEBAR TOGGLE CONTROL (WHEN CLOSED)
+───────────────────────────────────────── */
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"],
+[data-testid="stSidebarCollapseButton"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 999999 !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] button,
+[data-testid="collapsedControl"] button,
+[data-testid="stSidebarCollapseButton"] button,
+header button[kind="header"] {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    color: #1e293b !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] button:hover,
+[data-testid="collapsedControl"] button:hover,
+[data-testid="stSidebarCollapseButton"] button:hover,
+header button[kind="header"]:hover {
+    background: #fff7ed !important;
+    border-color: #f97316 !important;
+    color: #ea580c !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] svg,
+[data-testid="collapsedControl"] svg,
+[data-testid="stSidebarCollapseButton"] svg,
+header button[kind="header"] svg {
+    fill: #334155 !important;
+    stroke: #334155 !important;
+    color: #334155 !important;
+}
+
 
 /* ── Pipeline Steps ── */
 .pipeline-container {
@@ -901,42 +727,8 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb { background: #c5cbd5; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* ── Sidebar toggle button (visible when sidebar is collapsed) ── */
-[data-testid="stSidebarCollapsedControl"] {
-    display: block !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] button {
-    background: var(--surface) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 10px !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
-    width: 40px !important;
-    height: 40px !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transition: all 0.2s ease !important;
-    position: fixed !important;
-    top: 14px !important;
-    left: 14px !important;
-    z-index: 999 !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] button:hover {
-    background: #fff7ed !important;
-    border-color: #f97316 !important;
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1) !important;
-    transform: none !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] button svg {
-    fill: #334155 !important;
-    width: 18px !important;
-    height: 18px !important;
-}
 </style>
+
 """, unsafe_allow_html=True)
 
 # ─── Session State Init ──────────────────────────────────────────────────────────
