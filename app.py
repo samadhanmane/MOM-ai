@@ -627,56 +627,34 @@ with col2:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── Upload Section ─────────────────────────────────────────────────────────────
+# ─── Upload Section ─────────────────────────────────────────────────────────────
 if st.session_state.result is None:
-
     st.markdown("""
-    <div class="start-section">
-        <div class="start-title">
-            📤 Start a new analysis
-        </div>
-
-        <div class="start-subtitle">
-            Paste a YouTube URL or drop a media file below.
-        </div>
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem;color:#0f172a;">📤 Start a new analysis</div>
+    <div style="font-size:0.85rem;color:#64748b;margin-bottom:1.2rem;">
+        Paste a YouTube URL or drop a media file below.
     </div>
     """, unsafe_allow_html=True)
 
     col_upload, col_url = st.columns([3, 2], gap="large")
 
-    # ── Upload ─────────────────────────────────────────────
     with col_upload:
-
-        st.markdown("""
-        <div class="input-label">
-            MEDIA FILE
-        </div>
-        """, unsafe_allow_html=True)
-
+        st.markdown('<div style="font-size:0.75rem;color:#64748b;font-weight:600;margin-bottom:4px;">Upload Media File</div>', unsafe_allow_html=True)
         uploaded_file = st.file_uploader(
             "Upload media",
-            type=[
-                "mp4", "mov", "webm",
-                "mp3", "wav", "m4a",
-                "ogg", "flac"
-            ],
+            type=["mp4", "mov", "webm", "mp3", "wav", "m4a", "ogg", "flac"],
             label_visibility="collapsed",
             help="Drag and drop or click to browse"
         )
 
-    # ── YouTube URL ────────────────────────────────────────
     with col_url:
-
-        st.markdown("""
-        <div class="input-label">
-            YOUTUBE URL
-        </div>
-        """, unsafe_allow_html=True)
-
+        st.markdown('<div style="font-size:0.75rem;color:#64748b;font-weight:600;margin-bottom:4px;">YouTube URL</div>', unsafe_allow_html=True)
         source_url = st.text_input(
             "YouTube URL",
             placeholder="https://www.youtube.com/watch?v=...",
             label_visibility="collapsed"
         )
+
 
     # Button row
     col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 2])
