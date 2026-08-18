@@ -25,19 +25,21 @@ app = FastAPI(
 )
 
 # CORS Configuration
-frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+frontend_url = os.getenv("FRONTEND_URL", "*")
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
+    "https://mom-ai-gamma.vercel.app",
 ]
 
-if frontend_url and frontend_url not in origins:
+if frontend_url and frontend_url not in origins and frontend_url != "*":
     origins.append(frontend_url)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins if frontend_url != "*" else ["*"],
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

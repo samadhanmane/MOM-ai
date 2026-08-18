@@ -3,6 +3,8 @@ import os
 import shutil
 from typing import Optional
 from fastapi import APIRouter, BackgroundTasks, UploadFile, File, Form, HTTPException, status, Request
+from backend.services.session_service import session_service
+from backend.services.pipeline_service import execute_analysis_pipeline
 
 router = APIRouter(prefix="/api", tags=["Analysis"])
 
