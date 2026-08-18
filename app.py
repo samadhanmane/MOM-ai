@@ -425,15 +425,22 @@ h1, h2, h3, h4, h5, h6 {
 
     background: #f8fafc !important;
 
-    padding: 0 !important;
+    padding: 1.5rem !important;
 
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 
+    overflow: hidden !important;
+
     transition:
         border-color 0.2s ease,
         background 0.2s ease !important;
+}
+
+/* Hide the "Limit 200MB per file" small text that overflows */
+[data-testid="stFileUploader"] > div > small {
+    display: none !important;
 }
 
 
