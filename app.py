@@ -378,6 +378,8 @@ h1, h2, h3, h4, h5, h6 {
    UPLOAD BUTTON — ONLY CHANGE THIS
 ───────────────────────────────────────── */
 
+/* Upload button */
+
 [data-testid="stFileUploaderDropzone"] button {
     background: #ffffff !important;
 
@@ -391,7 +393,12 @@ h1, h2, h3, h4, h5, h6 {
 
     font-size: 0.8rem !important;
 
-    padding: 0.55rem 1rem !important;
+    min-width: 124px !important;
+    width: auto !important;
+
+    padding: 0.55rem 16px !important;
+
+    white-space: nowrap !important;
 
     box-shadow: none !important;
 
@@ -400,6 +407,9 @@ h1, h2, h3, h4, h5, h6 {
         border-color 0.2s ease,
         color 0.2s ease !important;
 }
+
+
+
 
 
 /* ─────────────────────────────────────────
