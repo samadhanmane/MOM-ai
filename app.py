@@ -32,9 +32,9 @@ st.markdown("""
     --accent: #4a90d9;
     --accent-light: #6aafe6;
     --accent-soft: #e8f0fe;
-    --text: #1a2332;
-    --text-soft: #4a5a72;
-    --text-muted: #8899b0;
+    --text: #0f172a;
+    --text-soft: #334155;
+    --text-muted: #64748b;
     --success: #2e9b6e;
     --success-soft: #e6f5ef;
     --warning: #e8a838;
@@ -616,8 +616,8 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ─── Upload Section ─────────────────────────────────────────────────────────────
 if st.session_state.result is None:
     st.markdown("""
-    <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem;">📤 Start a new analysis</div>
-    <div style="font-size:0.85rem;color:var(--text-soft);margin-bottom:1.2rem;">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:0.3rem;color:#0f172a;">📤 Start a new analysis</div>
+    <div style="font-size:0.85rem;color:#334155;margin-bottom:1.2rem;">
         Paste a YouTube URL or drop a media file below.
     </div>
     """, unsafe_allow_html=True)
