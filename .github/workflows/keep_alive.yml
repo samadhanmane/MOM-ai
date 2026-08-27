@@ -1,0 +1,17 @@
+name: Keep Streamlit App Alive
+
+on:
+  schedule:
+    # Run every 6 hours to prevent long-term inactivity sleep
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Streamlit App
+        run: |
+          echo "Pinging MOM Streamlit app to keep it active..."
+          curl -s -L --max-time 30 -I "https://meeting-assistant-mom.streamlit.app/" || true
+          echo "Keep-alive ping completed."

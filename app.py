@@ -2,6 +2,7 @@ import streamlit as st
 import time
 from dotenv import load_dotenv
 from utils.audio_processor import process_input
+from utils.health_check import start_background_health_check
 from core.transcriber import transcribe_all
 from core.summarize import summarise, generate_title
 from core.extractor import extract_action_items, extract_key_decisions, extract_questions
@@ -15,6 +16,22 @@ st.set_page_config(
     page_icon="✦",
     layout="wide",
     initial_sidebar_state="expanded",
+)
+
+# ─── Background Health Check & Keep-Alive (Runs every 60s) ──────────────────────
+start_background_health_check(interval_seconds=60)
+
+# Client-side keepalive ping to prevent browser websocket disconnection on idle tabs
+st.components.v1.html(
+    """
+    <script>
+        setInterval(() => {
+            fetch('/_stcore/health').catch(() => {});
+        }, 60000);
+    </script>
+    """,
+    height=0,
+    width=0,
 )
 
 # ─── Custom CSS ─────────────────────────────────────────────────────────────────
