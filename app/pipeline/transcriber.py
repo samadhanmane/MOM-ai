@@ -30,6 +30,10 @@ _whisper_model_name = None
 def _normalize_model_name(model_name: str) -> str:
     """Ensure model_name maps to a valid Hugging Face Whisper repository."""
     name = model_name.lower().replace("openai/", "")
+    # In cloud environments with tight memory (Render Free Tier 512MB RAM), use whisper-tiny to prevent OOM crash
+    if os.getenv("RENDER") or os.getenv("LOW_MEMORY", "false").lower() == "true":
+        return "openai/whisper-tiny"
+
     if "tiny" in name:
         return "openai/whisper-tiny"
     elif "base" in name:
@@ -53,14 +57,24 @@ def _load_whisper(model_name: str = "openai/whisper-small"):
 
     from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
-    print(f"[Transcriber] Loading {canonical_name} on {DEVICE}...")
-    _whisper_processor = WhisperProcessor.from_pretrained(canonical_name)
-    _whisper_model = WhisperForConditionalGeneration.from_pretrained(canonical_name)
-    _whisper_model = _whisper_model.to(DEVICE)
-    _whisper_model.eval()
-    _whisper_model_name = canonical_name
-    print(f"[Transcriber] {canonical_name} loaded.")
-    return _whisper_processor, _whisper_model
+    try:
+        print(f"[Transcriber] Loading {canonical_name} on {DEVICE}...")
+        _whisper_processor = WhisperProcessor.from_pretrained(canonical_name)
+        _whisper_model = WhisperForConditionalGeneration.from_pretrained(canonical_name)
+        _whisper_model = _whisper_model.to(DEVICE)
+        _whisper_model.eval()
+        _whisper_model_name = canonical_name
+        print(f"[Transcriber] {canonical_name} loaded.")
+        return _whisper_processor, _whisper_model
+    except Exception as e:
+        print(f"[Transcriber] Failed to load {canonical_name}: {e}. Falling back to whisper-tiny...")
+        canonical_name = "openai/whisper-tiny"
+        _whisper_processor = WhisperProcessor.from_pretrained(canonical_name)
+        _whisper_model = WhisperForConditionalGeneration.from_pretrained(canonical_name)
+        _whisper_model = _whisper_model.to(DEVICE)
+        _whisper_model.eval()
+        _whisper_model_name = canonical_name
+        return _whisper_processor, _whisper_model
 
 
 def transcribe(
