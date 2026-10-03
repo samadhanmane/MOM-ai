@@ -142,5 +142,46 @@ Open your browser at `http://localhost:8501`.
 
 ---
 
+## ⚡ Keeping the App Alive 24/7 (Preventing Sleep Mode)
+
+Free cloud platforms (like **Streamlit Community Cloud** or **Render**) put applications into hibernation/sleep mode if no user visits for 10–15 minutes. This repository includes a 4-tier keep-alive system to ensure 24/7 uptime:
+
+### 1. Automated GitHub Actions Ping (Built-in)
+The workflow at [`.github/workflows/keep_alive.yml`](.github/workflows/keep_alive.yml) runs on a schedule every **10 minutes**:
+- Sends an **HTTP GET** request to the public URL to register edge visitor traffic.
+- Inspects the platform status via `GET /api/v2/app/status`.
+- Automatically sends a **POST request to `/api/v2/app/resume`** with CSRF authentication if the app enters sleep mode, waking it up instantly.
+- Runs a continuous 7.5-minute ping cycle between runs so the app is never idle.
+
+You can also manually trigger the wake-up workflow anytime from the **GitHub Actions** tab using the **Run workflow** button.
+
+### 2. Standalone CLI Keep-Alive Script
+You can run the keep-alive script locally or on any server/cron:
+```bash
+# One-shot check and wake-up
+python utils/keep_alive.py --url https://meeting-assistant-mom.streamlit.app
+
+# Run continuously every 5 minutes (daemon mode)
+python utils/keep_alive.py --url https://meeting-assistant-mom.streamlit.app --daemon --interval 300
+
+# Force a resume POST call
+python utils/keep_alive.py --force-resume
+```
+
+### 3. External Webhook / Free Cron Monitors (Recommended for 100% Uptime)
+To ensure reliable pings independent of GitHub Actions:
+1. Go to **[cron-job.org](https://cron-job.org)** or **[UptimeRobot](https://uptimerobot.com)** (both 100% free).
+2. Create a new monitor / cron job:
+   - **URL:** `https://meeting-assistant-mom.streamlit.app` (or your app URL)
+   - **Execution Schedule:** Every `5 minutes` or `10 minutes`
+   - **Request Method:** `GET`
+3. Save the job. The monitor will ping your Streamlit app continuously every 5 minutes, preventing the inactivity timer from ever expiring!
+
+### 4. In-App Daemon & Browser Heartbeat
+- **Daemon Thread:** [`utils/health_check.py`](utils/health_check.py) runs in the background on the server, pinging local and external endpoints.
+- **Client-side Heartbeat:** In [`app.py`](app.py), active browser tabs send background health pings every 30 seconds and refresh immediately upon tab focus, preventing idle WebSocket disconnects.
+
+---
+
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).

@@ -25,14 +25,32 @@ start_background_health_check(interval_seconds=60)
 st.components.v1.html(
     """
     <script>
-        setInterval(() => {
-            fetch('/_stcore/health').catch(() => {});
-        }, 60000);
+        (function() {
+            function ping() {
+                try {
+                    // 1. Keep local Streamlit server session active
+                    fetch('/_stcore/health', { method: 'GET', cache: 'no-store' }).catch(function() {});
+                    // 2. Keep Streamlit Community Cloud edge router active
+                    fetch('/api/v2/app/status', { method: 'GET', cache: 'no-store' }).catch(function() {});
+                } catch(e) {}
+            }
+            // Ping every 30 seconds
+            setInterval(ping, 30000);
+            ping();
+
+            // Refresh ping immediately when tab regains focus
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible') {
+                    ping();
+                }
+            });
+        })();
     </script>
     """,
     height=0,
     width=0,
 )
+
 
 # ─── Custom CSS ─────────────────────────────────────────────────────────────────
 st.markdown("""

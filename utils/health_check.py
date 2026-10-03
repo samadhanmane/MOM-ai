@@ -11,6 +11,7 @@ import os
 import logging
 import requests
 import streamlit as st
+from utils.keep_alive import ping_and_wake
 
 logger = logging.getLogger("health_check")
 if not logger.handlers:
@@ -31,7 +32,7 @@ def _run_health_check_loop(interval_seconds: int = 60, public_url: str | None = 
     """
     Background daemon loop that periodically pings:
     1. Local Streamlit health endpoint (http://127.0.0.1:{port}/_stcore/health)
-    2. External public URL (to register incoming edge traffic on Streamlit Cloud)
+    2. External public URL and status/resume APIs to keep Streamlit Cloud awake
     """
     port = os.getenv("PORT", os.getenv("STREAMLIT_SERVER_PORT", "8501"))
     local_url = f"http://127.0.0.1:{port}/_stcore/health"
@@ -59,21 +60,13 @@ def _run_health_check_loop(interval_seconds: int = 60, public_url: str | None = 
         except Exception as e:
             logger.debug(f"Local health check ping failed: {e}")
 
-        # 2. Ping external public URL to keep Streamlit Cloud edge awake
+        # 2. Ping external public URL & Streamlit status/resume APIs
         if target_url:
             try:
-                headers = {"User-Agent": "MOM-Streamlit-HealthCheck/1.0"}
-                res_ext = requests.get(
-                    target_url,
-                    headers=headers,
-                    allow_redirects=True,
-                    timeout=10
-                )
-                logger.info(
-                    f"Keep-alive ping to {target_url} succeeded (status: {res_ext.status_code})"
-                )
+                result = ping_and_wake(url=target_url, force_resume=False, timeout=10)
+                logger.info(f"Keep-alive check for {target_url}: {result.get('message')}")
             except Exception as e:
-                logger.warning(f"Keep-alive ping to {target_url} failed: {e}")
+                logger.warning(f"Keep-alive check to {target_url} failed: {e}")
 
         time.sleep(interval_seconds)
 

@@ -1,17 +1,64 @@
-name: Keep Streamlit App Alive
+name: Keep Streamlit App Alive & Active
 
 on:
   schedule:
-    # Run every 6 hours to prevent long-term inactivity sleep
-    - cron: '0 */6 * * *'
+    # Runs every 10 minutes to guarantee the app never hits the 10-15 minute inactivity sleep
+    - cron: '*/10 * * * *'
   workflow_dispatch:
+    inputs:
+      force_resume:
+        description: 'Force HTTP POST resume wake-up signal'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
-  ping:
+  keep-alive:
+    name: Ping & Wake Streamlit App
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed for keepalive-workflow to prevent GitHub 60-day cron suspension
+
     steps:
-      - name: Ping Streamlit App
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: ''
+
+      - name: Install Dependencies
         run: |
-          echo "Pinging MOM Streamlit app to keep it active..."
-          curl -s -L --max-time 30 -I "https://meeting-assistant-mom.streamlit.app/" || true
-          echo "Keep-alive ping completed."
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Execute Keep-Alive & Wake-Up Routine
+        env:
+          APP_URL: ${{ vars.APP_URL || 'https://meeting-assistant-mom.streamlit.app' }}
+          FORCE_RESUME: ${{ github.event.inputs.force_resume || 'false' }}
+        run: |
+          echo "🚀 Starting MOM Streamlit Keep-Alive sequence for $APP_URL ..."
+          EXTRA_FLAGS=""
+          if [ "$FORCE_RESUME" = "true" ]; then
+            EXTRA_FLAGS="--force-resume"
+          fi
+          
+          # Run a 7.5-minute cycle pinging every 90s to keep the edge active between workflow runs
+          python utils/keep_alive.py --url "$APP_URL" --daemon --interval 90 --duration 450 $EXTRA_FLAGS
+
+      - name: Fallback Direct Curl Check
+        if: always()
+        run: |
+          APP_URL="${{ vars.APP_URL || 'https://meeting-assistant-mom.streamlit.app' }}"
+          echo "🌐 Direct edge verification on $APP_URL ..."
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 15 "$APP_URL")
+          echo "Edge response HTTP status: $STATUS_CODE"
+
+      - name: Prevent GitHub Workflow Inactivity Auto-Disable
+        uses: gautamkrishnar/keepalive-workflow@v1
+        with:
+          commit_message: "Automated keep-alive heartbeat"
+          committer_username: "github-actions[bot]"
+          committer_email: "github-actions[bot]@users.noreply.github.com"
